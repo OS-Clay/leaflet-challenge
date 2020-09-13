@@ -13,7 +13,7 @@ function createFeatures(earthquakeData) {
   // Give each feature a popup describing the place and time of the earthquake
   function onEachFeature(feature, layer) {
     layer.bindPopup("<h3>" + feature.properties.place +
-      "</h3><hr><p>" + new Date(feature.properties.time) + "</p>");
+      "</h3><hr><p>" + new Date(feature.properties.time) + "</p>" + "<p>" + feature.properties.mag + "</p>");
   }
 
   // Create a GeoJSON layer containing the features array on the earthquakeData object
@@ -43,6 +43,30 @@ function createMap(earthquakes) {
     accessToken: API_KEY
   });
 
+  /* function getColor(d) {
+    return d > 6 ? '#800026' :
+           d > 5  ? '#BD0026' :
+           d > 4  ? '#E31A1C' :
+           d > 3.5  ? '#FC4E2A' :
+           d > 3   ? '#FD8D3C' :
+           d > 2.7  ? '#FEB24C' :
+           d > 2.5   ? '#FED976' :
+                      '#FFEDA0';
+}
+
+function style(feature) {
+    return {
+        fillColor: getColor(feature.properties.mag),
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.7
+    };
+}
+
+L.geoJson(earthquakeData, {style: style}).addTo(map)
+ */
   // Define a baseMaps object to hold our base layers
   var baseMaps = {
     "Street Map": streetmap,
